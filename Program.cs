@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ASPMusicApp.Data;
 namespace ASPMusicApp
 {
     public class Program
@@ -5,6 +8,8 @@ namespace ASPMusicApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<ASPMusicAppContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ASPMusicAppContext") ?? throw new InvalidOperationException("Connection string 'ASPMusicAppContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddRazorPages();
