@@ -18,6 +18,41 @@ namespace ASPMusicApp.Models
                 if (context.Song.Any()) {
                     return;
                 }
+
+                context.Song.AddRange(
+                    new Song
+                    {
+                        Title = "Fight Song",
+                        ReleaseDate = DateTime.Parse("2015-2-19"),
+                        Genre = "Pop Rock",
+                        Artist = "Rachel Platten"
+                    },
+
+                    new Song
+                    {
+                        Title = "Complicated",
+                        ReleaseDate = DateTime.Parse("2002-3-11"),
+                        Genre = "Pop Rock",
+                        Artist = "Avril Lavigne"
+                    },
+
+                    new Song
+                    {
+                        Title = "Judas",
+                        ReleaseDate = DateTime.Parse("2017-5-5"),
+                        Genre = "Metal",
+                        Artist = "Fozzy"
+                    },
+                    new Song
+                    {
+                        Title = "Black Swan",
+                        ReleaseDate = DateTime.Parse("2020-1-20"),
+                        Genre = "Trap",
+                        Artist = "BTS"
+                    }
+
+                    );
+                    context.SaveChanges();
             }
         }
     }

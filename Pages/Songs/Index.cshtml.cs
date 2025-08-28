@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ASPMusicApp.Data;
 using ASPMusicApp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ASPMusicApp.Pages.Songs
 {
@@ -21,9 +22,33 @@ namespace ASPMusicApp.Pages.Songs
 
         public IList<Song> Song { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Genres { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SongGenre { get; set; }
+
         public async Task OnGetAsync()
         {
-            Song = await _context.Song.ToListAsync();
+            IQueryable<string> genreQuery = from m in _context.Song orderby m.Genre select m.Genre;
+
+            var songs = from m in _context.Song select m;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                songs = songs.Where(s => s.Title.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(SongGenre))
+            {
+                songs = songs.Where(x => x.Genre == SongGenre);
+            }
+
+            Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+
+            Song = await songs.ToListAsync();
         }
     }
 }
