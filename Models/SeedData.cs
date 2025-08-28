@@ -25,7 +25,8 @@ namespace ASPMusicApp.Models
                         Title = "Fight Song",
                         ReleaseDate = DateTime.Parse("2015-2-19"),
                         Genre = "Pop Rock",
-                        Artist = "Rachel Platten"
+                        Artist = "Rachel Platten",
+                        Rating = "Good"
                     },
 
                     new Song
@@ -33,7 +34,8 @@ namespace ASPMusicApp.Models
                         Title = "Complicated",
                         ReleaseDate = DateTime.Parse("2002-3-11"),
                         Genre = "Pop Rock",
-                        Artist = "Avril Lavigne"
+                        Artist = "Avril Lavigne",
+                        Rating = "Good"
                     },
 
                     new Song
@@ -41,14 +43,16 @@ namespace ASPMusicApp.Models
                         Title = "Judas",
                         ReleaseDate = DateTime.Parse("2017-5-5"),
                         Genre = "Metal",
-                        Artist = "Fozzy"
+                        Artist = "Fozzy",
+                        Rating = "OK"
                     },
                     new Song
                     {
                         Title = "Black Swan",
                         ReleaseDate = DateTime.Parse("2020-1-20"),
                         Genre = "Trap",
-                        Artist = "BTS"
+                        Artist = "BTS",
+                        Rating = "Acclaimed"
                     }
 
                     );
